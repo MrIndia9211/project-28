@@ -57,7 +57,11 @@ function draw() {
 	mango5.display();
 	
 	sling.display();
-  
+    detectollision(stone,mango1);
+  detectollision(stone,mango2);
+  detectollision(stone,mango3);
+  detectollision(stone,mango4);
+  detectollision(stone,mango5);
 	
 
 	drawSprites();
@@ -75,6 +79,23 @@ function draw() {
 	if(keyCode === 32){
 	 
 	  sling.attach(stone.body);
+	  Matter.Body.setPosition(stone.body, {x:250  , y:595 });
+	
 	}
   }
   
+   function detectollision(lstone,lmango){
+	
+	
+  mangoBodyPosition=lmango.body.position
+  stoneBodyPosition=lstone.body.position
+  
+  var distance=dist(stoneBodyPosition.x, stoneBodyPosition.y, mangoBodyPosition.x, mangoBodyPosition.y)
+ 
+  	if(distance<=lmango.r+lstone.r)
+    {
+     
+  	  Matter.Body.setStatic(lmango.body,false);
+    }
+
+  }
